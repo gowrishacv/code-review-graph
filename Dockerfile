@@ -15,6 +15,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
   PYTHONUNBUFFERED=1 \
   HOME=/home/crg
 
+# Trust only the documented bind-mount path, including with --user and HOME=/tmp.
+ENV GIT_CONFIG_COUNT=1 \
+  GIT_CONFIG_KEY_0=safe.directory \
+  GIT_CONFIG_VALUE_0=/workspace
+
 RUN apt-get update \
   && apt-get install -y --no-install-recommends git ca-certificates \
   && rm -rf /var/lib/apt/lists/* \

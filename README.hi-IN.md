@@ -130,6 +130,12 @@ podman run --rm \
   code-review-graph:local build
 ```
 
+ग्राफ़ माउंट किए गए रिपॉज़िटरी की `.code-review-graph/` डायरेक्टरी में बना रहता है और
+`/workspace/app.py` जैसे कंटेनर के पूर्ण पथ सहेजता है। `update` और `detect-changes` को
+Docker या Podman से उसी `/workspace` माउंट के साथ चलाएँ। इस ग्राफ़ पर होस्ट से `update`
+चलाने पर "built with a different repository root" त्रुटि आ सकती है। होस्ट कमांड पर
+स्विच करने के लिए, होस्ट पर `code-review-graph build` चलाकर होस्ट के पथों के साथ ग्राफ़ फिर से बनाएँ।
+
 सहेजे गए ग्राफ़ को देखने के लिए `build` की जगह `status` लिखें।
 इमेज में Git शामिल है और यह डिफ़ॉल्ट रूप से गैर-root यूज़र के रूप में चलती है।
 इमेज बनाते समय ग्राफ़ नहीं बनाया जाता।

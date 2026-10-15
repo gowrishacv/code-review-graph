@@ -130,6 +130,11 @@ podman run --rm \
   code-review-graph:local build
 ```
 
+图会保存在挂载仓库的 `.code-review-graph/` 中，并记录 `/workspace/app.py` 等容器内的绝对路径。
+请通过 Docker 或 Podman 使用相同的 `/workspace` 挂载路径运行 `update` 和 `detect-changes`。
+在宿主机上对该图运行 `update` 可能会报错 "built with a different repository root"。
+如需改用宿主机命令，请先在宿主机上运行 `code-review-graph build`，使用宿主机路径重新构建图。
+
 将 `build` 替换为 `status` 可查看已保存的图。
 镜像包含 Git，默认以非 root 用户运行。
 构建镜像时不会生成图。

@@ -130,6 +130,13 @@ podman run --rm \
   code-review-graph:local build
 ```
 
+The graph persists in `.code-review-graph/` in the mounted repository and stores
+absolute container paths such as `/workspace/app.py`. Run `update` and
+`detect-changes` through Docker or Podman with the same `/workspace` mount.
+A host `update` on this graph can fail with "built with a different repository
+root". To switch to host commands, run `code-review-graph build` on the host
+to rebuild the graph with host paths.
+
 Replace `build` with `status` to inspect the saved graph.
 The image includes Git and defaults to a non-root user.
 No graph is generated during image construction.

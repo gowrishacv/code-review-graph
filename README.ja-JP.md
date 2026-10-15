@@ -130,6 +130,13 @@ podman run --rm \
   code-review-graph:local build
 ```
 
+グラフはマウントしたリポジトリの `.code-review-graph/` に保存され、
+`/workspace/app.py` などのコンテナ内の絶対パスを記録します。
+`update` と `detect-changes` は、同じ `/workspace` マウントを使って Docker または Podman で実行してください。
+このグラフに対してホストで `update` を実行すると、"built with a different repository root"
+というエラーになる場合があります。ホストのコマンドに切り替えるには、ホストで
+`code-review-graph build` を実行し、ホストのパスでグラフを再構築してください。
+
 保存されたグラフを確認するには、`build` を `status` に置き換えます。
 イメージには Git が含まれ、デフォルトでは root 以外のユーザーで実行されます。
 イメージのビルド中にグラフは生成されません。

@@ -131,6 +131,13 @@ podman run --rm \
   code-review-graph:local build
 ```
 
+그래프는 마운트한 저장소의 `.code-review-graph/`에 저장되며,
+`/workspace/app.py`와 같은 컨테이너 내부의 절대 경로를 기록합니다.
+`update`와 `detect-changes`는 동일한 `/workspace` 마운트를 사용하여 Docker 또는 Podman으로 실행하세요.
+이 그래프에 대해 호스트에서 `update`를 실행하면 "built with a different repository root"
+오류가 발생할 수 있습니다. 호스트 명령으로 전환하려면 호스트에서
+`code-review-graph build`를 실행하여 호스트 경로로 그래프를 다시 빌드하세요.
+
 저장된 그래프를 확인하려면 `build`를 `status`로 바꾸세요.
 이미지에는 Git이 포함되어 있으며, 기본적으로 root가 아닌 사용자로 실행됩니다.
 이미지를 빌드하는 동안에는 그래프를 생성하지 않습니다.
